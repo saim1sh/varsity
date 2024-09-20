@@ -22,8 +22,7 @@ int main()
       i++;
    }
    char reversed_string[50];
-   for (int i = 0; i < str_size; i++)
-   {
+   for(int i = 0; i<str_size; i++){
       reversed_string[i] = string[str_size - 1 - i];
    }
    reversed_string[str_size] = '\0';
