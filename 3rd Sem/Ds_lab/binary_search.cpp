@@ -1,55 +1,58 @@
 #include <bits/stdc++.h>
 using namespace std;
-int main()
-{
-   int arr[10] = {9, 5, 6, 8, 3, 4, 2, 1, 78, 56};
-   for (int i = 0; i < 10; i++)
-   {
-      for (int j = 0; j < 10 - 1; j++)
-      {
-         if (arr[j] > arr[j + 1])
-         {
-            int temp = arr[j];
-            arr[j] = arr[j + 1];
-            arr[j + 1] = temp;
-         }
-      }
-   }
-   cout << "Sorted array in ascending order: " << endl;
-   for (auto boom : arr)
-   {
-      cout << boom << " ";
-   }
-   cout << "\n";
-   cout << "Enter element to search: ";
-   int avg = 10 / 2;
-   int elem;
-   cin >> elem;
-   int low = 0;
-   int high = 10 - 1;
-   while (low <= high)
-   {
-      int mid = (low + high) / 2;
-      if (arr[mid] == elem)
-      {
-         cout << elem << " found at index " << mid << endl;
-         break;
-      }
-      else if (arr[mid] < elem)
-      {
-         low = mid + 1;
-      }
-      else
-      {
-         high = mid - 1;
-      }
-   }
-   if (low > high)
-   {
-      cout << elem << " not found in array" << endl;
-   }
-   return 0;
+
+// Function to perform bubble sort
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
 }
 
-// In binary search ,time complexity is O(log(n)) which is far better as compare to binary search
-// time complexity which is O(n).
+// Function to perform binary search
+int binarySearch(int arr[], int n, int elem) {
+    int low = 0;
+    int high = n - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == elem) {
+            return mid; // Element found
+        } else if (arr[mid] < elem) {
+            low = mid + 1; // Search in the right half
+        } else {
+            high = mid - 1; // Search in the left half
+        }
+    }
+    return -1; // Element not found
+}
+
+int main() {
+    int arr[10] = {9, 5, 6, 8, 3, 4, 2, 1, 78, 56};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    // Sort the array
+    bubbleSort(arr, n);
+    cout << "Sorted array in ascending order: " << endl;
+    for (auto boom : arr) {
+        cout << boom << " ";
+    }
+    cout << "\n";
+
+    // Input element to search
+    cout << "Enter element to search: ";
+    int elem;
+    cin >> elem;
+
+    // Perform binary search
+    int index = binarySearch(arr, n, elem);
+    if (index != -1) {
+        cout << elem << " found at index " << index << endl;
+    } else {
+        cout << elem << " not found in array" << endl;
+    }
+
+    return 0;
+}
