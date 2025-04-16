@@ -7,6 +7,16 @@ struct Kit
     int value;
 };
 
+void displayKits(vector<Kit> &kits, int capacity)
+{
+    cout << "Robot Capacity: " << capacity << "\n";
+    cout << "Kits (weight, value):" << "\n";
+    for (const Kit &k : kits)
+    {
+        cout << k.weight << ", " << k.value << "\n";
+    }
+}
+
 void bfs(int S, vector<vector<int>> &boom, int location)
 {
     queue<int> q;
@@ -81,15 +91,7 @@ int knapsack(int W, const vector<Kit> &kits)
     return dp[W];
 }
 
-void displayKits(vector<Kit> &kits, int capacity)
-{
-    cout << "Robot Capacity: " << capacity << "\n";
-    cout << "Kits (weight, value):" << "\n";
-    for (const Kit &k : kits)
-    {
-        cout << k.weight << ", " << k.value << "\n";
-    }
-}
+
 
 int main()
 {
