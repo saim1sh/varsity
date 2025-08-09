@@ -21,23 +21,24 @@ vector<int> merge(const vector<int> &l, const vector<int> &r) {
     }
     return ans;
 }
-
-vector<int> merge_sort(const vector<int> &a, int l, int r) {
+vector<int> merge_sort(int l, int r) {
     if (l == r) return {a[l]};
     int mid = l + (r - l) / 2;
-    vector<int> left = merge_sort(a, l, mid);
-    vector<int> right = merge_sort(a, mid + 1, r);
+    vector<int> left = merge_sort(l, mid);
+    vector<int> right = merge_sort(mid + 1, r);
     return merge(left, right);
 }
+
+vector<int> a;
 
 int main() {
     int n;
     cin >> n;
-    vector<int> a(n);
+    a.resize(n);
     for (int i = 0; i < n; i++) {
         cin >> a[i];
     }
-    vector<int> ans = merge_sort(a, 0, n - 1);
+    vector<int> ans = merge_sort(0, n - 1);
     for (int i = 0; i < n; i++) {
         cout << ans[i] << ' ';
     }
