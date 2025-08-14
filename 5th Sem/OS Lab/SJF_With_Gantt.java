@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 class Process {
     int pid;
@@ -55,6 +57,10 @@ public class SJF_With_Gantt {
                         if (processes[i].arrivalTime < processes[idx].arrivalTime) {
                             idx = i;
                         }
+                        else if (processes[i].arrivalTime == processes[idx].arrivalTime) {
+                            if (processes[i].pid < processes[idx].pid) {
+                                idx = i;
+                            }
                     }
                 }
             }
